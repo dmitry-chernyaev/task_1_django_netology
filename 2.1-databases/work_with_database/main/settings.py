@@ -55,9 +55,12 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': 'ваш пароль',
+        'PASSWORD': 'jNdL_2269',
     }
 }
+# проверить создана ли БД в терминале linux: psql -U postgres -h 127.0.0.1 -l
+# создание бд в терминале: createdb -U postgres -h 127.0.0.1 netology_import_phones
+# После создания базы выполните миграции Django: python manage.py migrate
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

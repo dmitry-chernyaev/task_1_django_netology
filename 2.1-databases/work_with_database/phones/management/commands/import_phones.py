@@ -14,4 +14,18 @@ class Command(BaseCommand):
 
         for phone in phones:
             # TODO: Добавьте сохранение модели
-            pass
+            Phone(
+                id=int(phone['id']),
+                name=phone['name'],
+                price=int(phone['price']),
+                image=phone['image'],
+                release_date=phone['release_date'],
+                lte_exists=phone['lte_exists']
+            ).save()
+        self.stdout.write(self.style.SUCCESS(f'Imported {len(phones)} phones'))
+        # Когда вы вызываете phone.save():
+        # 1. Django вызывает ваш кастомный метод save() из модели
+        # 2. В нем выполняется: self.slug = slugify(self.name)
+        # 3. Затем вызывается стандартный save() родительского класса
+        # 4. Объект сохраняется в базу с автоматически созданным slug
+
