@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог книг{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1><a href="/books">Каталог</a></h1>
+        </div>
+        
+        <!-- Навигация по датам -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <nav aria-label="Date navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if prev_date %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'books_of_date' prev_date %}">
+                                    ← {{ prev_date }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">← Нет предыдущей даты</span>
+                            </li>
+                        {% endif %}
+                        
+                        <li class="page-item active">
+                            <span class="page-link">{{ pub_date }}</span>
+                        </li>
+                        
+                        {% if next_date %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'books_of_date' next_date %}">
+                                    {{ next_date }} →
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">Нет следующей даты →</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+        <!-- Список книг -->
+        <div class="row">
+            {% for book in books %}
+            <div class="book col-md-4">
+                <h2>{{ book.name }}</h2>
+                <p>Автор: {{ book.author }}</p>
+                <p>Дата публикации: {{ book.pub_date }}</p>
+            </div>
+            {% empty %}
+            <div class="col-md-12">
+                <p>Книги не найдены</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
