@@ -33,12 +33,12 @@ class Measurement(models.Model):
         verbose_name='Дата и время измерения'
     )
 
-    image = models.ImageField(
-        null=True,
-        blank=True,  # ← Добавьте это
-        upload_to='measurements/',
-        verbose_name='Изображение'  #
-    )
+    # image = models.ImageField(
+    #     null=True,
+    #     blank=True,  # ← Добавьте это
+    #     upload_to='measurements/',
+    #     verbose_name='Изображение'  #
+    # )
 
 
     def __str__(self):
